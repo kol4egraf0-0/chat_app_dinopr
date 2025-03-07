@@ -1,9 +1,17 @@
+import 'package:chat_app_dinopr/components/my_button.dart';
 import 'package:chat_app_dinopr/components/my_textfield.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget{
-  const LoginPage({super.key});
+  // email and pw controller
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _pwController = TextEditingController();
+  
+  LoginPage({super.key});
+  // логин
+  void login() {
 
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,17 +36,18 @@ class LoginPage extends StatelessWidget{
             ),
             ),
 
-
-
             const SizedBox(height: 25),
           //email едиттехт
-          MyTextField(hintText: "Почта",obscureText: false,),
+          MyTextField(hintText: "Почта",obscureText: false,controller: _emailController,),
             const SizedBox(height: 15),
           //пароль едит
-          MyTextField(hintText: "Пароль",obscureText: true,),
-
+          MyTextField(hintText: "Пароль",obscureText: true,controller: _pwController,),
+            const SizedBox(height: 25),
           //логин бтн
-
+          MyButton(
+            text: "Войти",
+            onTap: login,
+            )
 
           //регистрация
         ],
