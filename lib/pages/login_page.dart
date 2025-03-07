@@ -32,10 +32,10 @@ class LoginPage extends StatelessWidget{
 
             const SizedBox(height: 25),
           //email едиттехт
-          MyTextField(hintText: "Почта",),
-
+          MyTextField(hintText: "Почта",obscureText: false,),
+            const SizedBox(height: 15),
           //пароль едит
-          MyTextField(hintText: "Пароль",),
+          MyTextField(hintText: "Пароль",obscureText: true,),
 
           //логин бтн
 
