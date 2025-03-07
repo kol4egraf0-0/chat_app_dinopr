@@ -1,3 +1,4 @@
+import 'package:chat_app_dinopr/pages/register_page.dart';
 import 'package:chat_app_dinopr/themes/light_mode.dart';
 import 'package:flutter/material.dart';
 import 'pages/login_page.dart';

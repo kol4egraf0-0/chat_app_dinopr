@@ -2,16 +2,18 @@ import 'package:chat_app_dinopr/components/my_button.dart';
 import 'package:chat_app_dinopr/components/my_textfield.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget{
-  // email and pw controller
-  final TextEditingController _emailController = TextEditingController();
+class RegisterPage extends StatelessWidget {
+ final TextEditingController _emailController = TextEditingController();
   final TextEditingController _pwController = TextEditingController();
-  
-  LoginPage({super.key});
-  // логин
-  void login() {
+  final TextEditingController _confirmPwController = TextEditingController();
+
+  RegisterPage({super.key});
+
+  //регистариция функ
+  void register() {
 
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +31,7 @@ class LoginPage extends StatelessWidget{
           const SizedBox(height: 50),
           //здрасьте снова
           Text(
-            "Добро пожаловать, мы по вам скучали!",
+            "Давайте создадим аккаунт для тебя!",
             style: TextStyle(
               color: Theme.of(context).colorScheme.primary,
               fontSize: 16
@@ -42,19 +44,21 @@ class LoginPage extends StatelessWidget{
             const SizedBox(height: 15),
           //пароль едит
           MyTextField(hintText: "Пароль",obscureText: true,controller: _pwController,),
+            const SizedBox(height: 15),
+          MyTextField(hintText: "Подтвердите пароль",obscureText: true,controller: _confirmPwController,),
             const SizedBox(height: 25),
           //логин бтн
           MyButton(
-            text: "Войти",
-            onTap: login,
+            text: "Зарегестрироватся",
+            onTap: register,
             ),
               const SizedBox(height: 25),
           //регистрация
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Впервые тут? ", style: TextStyle(color: Theme.of(context).colorScheme.primary),),
-              Text("Зарегестрируйтесь сейчас!", style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.primary,))
+              Text("Уже имеете аккаунт? ", style: TextStyle(color: Theme.of(context).colorScheme.primary),),
+              Text("Тогда войдите в него!", style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.primary,))
             ],
           )
         ],
