@@ -1,3 +1,4 @@
+import 'package:chat_app_dinopr/components/my_textfield.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget{
@@ -7,25 +8,41 @@ class LoginPage extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      body: Column(
+      body: Center(
+        child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           //лого
-          Icon(Icons.message),
+          Icon(Icons.message, 
+          size: 60,
+          color: Theme.of(context).colorScheme.primary
+          ),
+
+          const SizedBox(height: 50),
           //здрасьте снова
+          Text(
+            "Добро пожаловать, мы по вам скучали!",
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.primary,
+              fontSize: 16
+            ),
+            ),
 
 
+
+            const SizedBox(height: 25),
           //email едиттехт
-          
+          MyTextField(hintText: "Почта",),
 
           //пароль едит
-
+          MyTextField(hintText: "Пароль",),
 
           //логин бтн
 
 
           //регистрация
         ],
+        )
       ),
     );
   }
