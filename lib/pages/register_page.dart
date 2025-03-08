@@ -7,7 +7,9 @@ class RegisterPage extends StatelessWidget {
   final TextEditingController _pwController = TextEditingController();
   final TextEditingController _confirmPwController = TextEditingController();
 
-  RegisterPage({super.key});
+  final void Function()? onTap;
+  RegisterPage({super.key, required this.onTap});
+
 
   //регистариция функ
   void register() {
@@ -58,7 +60,8 @@ class RegisterPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text("Уже имеете аккаунт? ", style: TextStyle(color: Theme.of(context).colorScheme.primary),),
-              Text("Тогда войдите в него!", style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.primary,))
+              GestureDetector(onTap: onTap,
+                child: Text("Тогда войдите в него!", style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.primary,)))
             ],
           )
         ],
