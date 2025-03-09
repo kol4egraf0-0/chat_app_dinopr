@@ -48,7 +48,8 @@ class HomePage extends StatelessWidget {
   } 
   //_buildUserListItem каждого польз
   Widget _buildUserListItem(Map<String, dynamic> userData, BuildContext context){
-    return UserTile(
+    if(userData["email"]!= _authService.getCurrentUser()!.email){
+      return UserTile(
       text: userData["email"],
       onTap: () {
         //нажал на пользователя -> в таверну
@@ -57,5 +58,8 @@ class HomePage extends StatelessWidget {
         ),));
       },
     );
+    } else{
+      return Container();
+    }
   }
 }
