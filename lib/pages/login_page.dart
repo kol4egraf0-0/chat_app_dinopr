@@ -13,16 +13,32 @@ class LoginPage extends StatelessWidget{
 
   LoginPage({super.key, required this.onTap});
   // логин
-  void login(BuildContext context) async{
-    final authService = AuthService();
-    try {
-      await authService.signInWithEmailPassword(_emailController.text, _pwController.text,);
-    } catch (e) {
-      showDialog(context: context, builder: (context)=> AlertDialog(
-        title: Text("Ошибка: "+e.toString()),
-      ));
-    }
+  void login(BuildContext context) async {
+  final authService = AuthService();
+  if (_emailController.text.isEmpty || _pwController.text.isEmpty) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text("Ошибка: Пожалуйста, заполните все поля"),
+      ),
+    );
+    return;
   }
+
+  try {
+    await authService.signInWithEmailPassword(
+      _emailController.text,
+      _pwController.text,
+    );
+  } catch (e) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text("Ошибка: " + e.toString()),
+      ),
+    );
+  }
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
