@@ -55,6 +55,7 @@ class HomePage extends StatelessWidget {
         //нажал на пользователя -> в таверну
         Navigator.push(context, MaterialPageRoute(builder: (context)=>ChatPage(
           receiverEmail: userData["email"],
+          receiverID: userData  ["uid"],
         ),));
       },
     );
