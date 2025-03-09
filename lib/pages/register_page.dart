@@ -1,3 +1,4 @@
+import 'package:chat_app_dinopr/auth/auth_service.dart';
 import 'package:chat_app_dinopr/components/my_button.dart';
 import 'package:chat_app_dinopr/components/my_textfield.dart';
 import 'package:flutter/material.dart';
@@ -12,9 +13,45 @@ class RegisterPage extends StatelessWidget {
 
 
   //регистариция функ
-  void register() {
-
+  void register(BuildContext context) {
+  // Получаем AuthService
+  final _auth = AuthService();
+  
+  // Проверяем, что пароли совпадают и длина пароля больше 6 символов
+  if (_pwController.text == _confirmPwController.text) {
+    if (_pwController.text.length < 6) {
+      // Если длина пароля меньше 6 символов
+      showDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+          title: Text("Пароль должен содержать не менее 6 символов!"),
+        ),
+      );
+    } else {
+      try {
+        // Если пароли совпадают и длина пароля правильная
+        _auth.signUpWithEmailPassword(_emailController.text, _pwController.text);
+      } catch (e) {
+        // Обрабатываем ошибку
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text("Ошибка: " + e.toString()),
+          ),
+        );
+      }
+    }
+  } else {
+    // Если пароли не совпадают
+    showDialog(
+      context: context,
+      builder: (context) => const AlertDialog(
+        title: Text("Пароли не совпадают!"),
+      ),
+    );
   }
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +89,7 @@ class RegisterPage extends StatelessWidget {
           //логин бтн
           MyButton(
             text: "Зарегестрироватся",
-            onTap: register,
+            onTap: () => register(context),
             ),
               const SizedBox(height: 25),
           //регистрация
