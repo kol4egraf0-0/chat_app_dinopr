@@ -1,4 +1,4 @@
-import 'package:chat_app_dinopr/auth/auth_service.dart';
+import 'package:chat_app_dinopr/services/auth/auth_service.dart';
 import 'package:chat_app_dinopr/components/my_button.dart';
 import 'package:chat_app_dinopr/components/my_textfield.dart';
 import 'package:flutter/material.dart';

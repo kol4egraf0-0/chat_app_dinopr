@@ -1,4 +1,4 @@
-import 'package:chat_app_dinopr/auth/auth_service.dart';
+import 'package:chat_app_dinopr/services/auth/auth_service.dart';
 import 'package:chat_app_dinopr/pages/settings_page.dart';
 import 'package:flutter/material.dart';
 
@@ -6,8 +6,8 @@ class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
 
   void logout() {
-    final _auth = AuthService();
-    _auth.signOut();
+    final auth = AuthService();
+    auth.signOut();
   }
 
   @override
@@ -33,7 +33,7 @@ class MyDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 25.0),
             child: ListTile(
-              title: Text("Г Л А В Н А Я"),
+              title: const Text("Г Л А В Н А Я"),
               leading: Icon(Icons.home,
               color: Theme.of(context).colorScheme.primary,),
               onTap: () {
@@ -46,7 +46,7 @@ class MyDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 25.0),
             child: ListTile(
-              title: Text("Н А С Т Р О Й К И"),
+              title: const Text("Н А С Т Р О Й К И"),
               leading: Icon(Icons.settings,
               color: Theme.of(context).colorScheme.primary,),
               onTap: () {
@@ -66,7 +66,7 @@ class MyDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 25.0, bottom: 25.0),
             child: ListTile(
-              title: Text("В Ы Й Т И"),
+              title: const Text("В Ы Й Т И"),
               leading: Icon(Icons.logout,
               color: Theme.of(context).colorScheme.primary,),
               onTap: logout,
