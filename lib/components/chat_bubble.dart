@@ -21,8 +21,22 @@ class ChatBubble extends StatelessWidget {
             children: [
               ListTile(
                 leading: const Icon(Icons.flag),
-                title: const Text('Report'),
+                title: const Text('Репорт'),
                 onTap: (){},
+              ),
+
+              ListTile(
+                leading: const Icon(Icons.block),
+                title: const Text('Блокировать'),
+                onTap: (){},
+              ),
+
+              ListTile(
+                leading: const Icon(Icons.cancel),
+                title: const Text('Закрыть'),
+                onTap: (){
+                  Navigator.pop(context);
+                },
               ),
             ],
           ));
