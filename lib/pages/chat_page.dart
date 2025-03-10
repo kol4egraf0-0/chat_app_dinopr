@@ -79,16 +79,23 @@ class ChatPage extends StatelessWidget {
       ));
   }
   Widget _buildUserInput(){
-    return Row(
-      children: [
-        Expanded(
-          child: MyTextField(hintText: "Напишите сообщение", obscureText: false, controller: _messageController)),
-          //отправить кнопка
-        IconButton(
-          onPressed: sendMessage, 
-          icon: const Icon(Icons.arrow_upward)
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 50.0),
+      child: Row(
+        children: [
+          Expanded(
+            child: MyTextField(hintText: "Напишите сообщение", obscureText: false, controller: _messageController)),
+            //отправить кнопка
+          Container(
+            decoration: const BoxDecoration(color: Colors.green, shape: BoxShape.circle),
+            margin: const EdgeInsets.only(right: 25),
+            child: IconButton(
+              onPressed: sendMessage, 
+              icon: const Icon(Icons.arrow_upward, color: Colors.white,)
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
