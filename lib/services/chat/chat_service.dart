@@ -28,7 +28,7 @@ class ChatService {
 
 
     //создать новое сообщение
-    Message newMessage = Message(senderID: currentUserID, senderEmail: currentUserID, receiverID: receiverID, message: message, timestamp: timestamp);
+    Message newMessage = Message(senderID: currentUserID, senderEmail: currentUserEmail, receiverID: receiverID, message: message, timestamp: timestamp);
 
     //построить конату чата для 2ух людей
     List<String> ids = [currentUserID, receiverID];
