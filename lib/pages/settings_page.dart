@@ -1,3 +1,4 @@
+import 'package:chat_app_dinopr/pages/blocked_user_page.dart';
 import 'package:chat_app_dinopr/themes/theme_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,32 +12,57 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
-        title: Text("Настройки"),
+        title: const Text("Настройки"),
         centerTitle: true, 
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.grey,
         elevation: 0,
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.secondary,
-          borderRadius: BorderRadius.circular(12)
+      body: Column(
+        children: [
+          // Темная тема
+          Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.secondary,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            margin: const EdgeInsets.only(left: 25, top: 10, right: 25),
+            padding: const EdgeInsets.only(left: 25,right:25,  top: 20, bottom: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text("Темная тема", style: TextStyle(fontWeight: FontWeight.bold),),
+                CupertinoSwitch(
+                  value: Provider.of<ThemeProvider>(context).isDarkMode, 
+                  onChanged: (value) => 
+                    Provider.of<ThemeProvider>(context, listen: false).toggleTheme(),
+                ),
+              ],
+            ),
           ),
-          margin: const EdgeInsets.all(25),
-          padding: const EdgeInsets.all(16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            //dark mode
-            const Text("Темная тема"),
-        
-            //switch toggle
-            CupertinoSwitch(
-            value: Provider.of<ThemeProvider>(context, listen:false).isDarkMode, 
-            onChanged: (value)=>Provider.of<ThemeProvider>(context, listen:false).toggleTheme(),
-            )
-          ],
-        ),
+
+          // Заблокированные пользователи
+          Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.secondary,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            margin: const EdgeInsets.only(left: 25, top: 10, right: 25),
+            padding: const EdgeInsets.only(left: 25,right:25,  top: 20, bottom: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text("Заблокированные пользователи", style: TextStyle(fontWeight: FontWeight.bold),),
+                //btn
+                IconButton(
+                  onPressed: ()=> Navigator.push
+                  (context, MaterialPageRoute
+                  (builder: (context)=>BlockedUserPage())), 
+                  icon: Icon(Icons.arrow_forward_rounded), color: Theme.of(context).colorScheme.primary,),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
   //_buildUserList для чела которы ща в системе
 
   Widget _buildUserList() {
-    return StreamBuilder(stream: _chatService.getUsersStream(), builder: (context, snapshot){
+    return StreamBuilder(stream: _chatService.getUsersStreamExcludingBlocked(), builder: (context, snapshot){
       //ошибка
       if(snapshot.hasError){
         return const Text("Ошибка");

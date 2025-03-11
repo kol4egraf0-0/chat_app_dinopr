@@ -60,7 +60,7 @@ class ChatBubble extends StatelessWidget {
             Navigator.pop(context);
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Вы пожаловались на сообщение")));
           }, 
-          child: Text("Репорт")),
+          child: Text("Да")),
       ],
       ),
     );
@@ -75,6 +75,9 @@ class ChatBubble extends StatelessWidget {
         TextButton(
           onPressed: () {
             ChatService().blockUser(userId);
+            //убрать шоу бокс
+            Navigator.pop(context);
+            //убрать диалог
             Navigator.pop(context);
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Пользователь заблокирован")));
           }, 
