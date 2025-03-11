@@ -10,22 +10,30 @@ class BlockedUserPage extends StatelessWidget {
   final ChatService chatService = ChatService();
   final AuthService authService = AuthService();
 
-  void _showUnblockBox(BuildContext context, String userId){
-    showDialog(context: context, builder: (context)=>AlertDialog(
-      title: const Text("Разблокировать пользователя"),
-      content: const Text("Ты уверен что хочешь разблокировать пользователя?"),
-      actions: [
-        TextButton(onPressed: () {
-          chatService.unblockUser(userId);
-          Navigator.pop(context);
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("Пользователь разблокирован"))
-          );
-        }, child: const Text("Закрыть")),
-        TextButton(onPressed: ()=> Navigator.pop(context), child: const Text("Разблокировать")),
-      ],
-    ));
-
+  void _showUnblockBox(BuildContext context, String userId) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text("Разблокировать пользователя"),
+        content: const Text("Ты уверен что хочешь разблокировать пользователя?"),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context), 
+            child: const Text("Отмена")
+          ),
+          TextButton(
+            onPressed: () async {
+              await chatService.unblockUser(userId); // Разблокируем пользователя
+              Navigator.pop(context); // Закрываем диалог
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text("Пользователь разблокирован")),
+              );
+            },
+            child: const Text("Разблокировать"),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -34,7 +42,7 @@ class BlockedUserPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Заблокированные пользователи"),
+        title: const Text("Забл. пользователи"),
         centerTitle: true, 
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.grey,
