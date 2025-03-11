@@ -32,20 +32,22 @@ class ChatBubble extends StatelessWidget {
               ListTile(
                 leading: const Icon(Icons.block),
                 title: const Text('Блокировать'),
-                onTap: (){},
+                onTap: (){
+                  Navigator.pop(context);
+                  _blockUser(context, userId);
+                },
               ),
 
               ListTile(
                 leading: const Icon(Icons.cancel),
                 title: const Text('Закрыть'),
-                onTap: (){
-                  Navigator.pop(context);
-                },
+                onTap: () => Navigator.pop(context),
               ),
             ],
           ));
       });
     }
+
   void _reportMessage(BuildContext context, String messageId, String user){
     showDialog(context: context, builder: (context)=>AlertDialog(
       title: const Text("Репорт сообщения"),
@@ -59,6 +61,24 @@ class ChatBubble extends StatelessWidget {
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Вы пожаловались на сообщение")));
           }, 
           child: Text("Репорт")),
+      ],
+      ),
+    );
+  }
+
+  void _blockUser(BuildContext context, String user){ 
+    showDialog(context: context, builder: (context)=>AlertDialog(
+      title: const Text("Заблокировать пользователя?"),
+      content: const Text("Вы точно хотите заблокировать пользователя?"),
+      actions: [
+        TextButton(onPressed: ()=>Navigator.pop(context), child: Text("Закрыть")),
+        TextButton(
+          onPressed: () {
+            ChatService().blockUser(userId);
+            Navigator.pop(context);
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Пользователь заблокирован")));
+          }, 
+          child: Text("Блокировать")),
       ],
       ),
     );
