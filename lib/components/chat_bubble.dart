@@ -1,3 +1,4 @@
+import 'package:chat_app_dinopr/services/chat/chat_service.dart';
 import 'package:chat_app_dinopr/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +23,10 @@ class ChatBubble extends StatelessWidget {
               ListTile(
                 leading: const Icon(Icons.flag),
                 title: const Text('Репорт'),
-                onTap: (){},
+                onTap: (){
+                  Navigator.pop(context);
+                  _reportMessage(context, messageId, userId);
+                },
               ),
 
               ListTile(
@@ -42,7 +46,23 @@ class ChatBubble extends StatelessWidget {
           ));
       });
     }
-
+  void _reportMessage(BuildContext context, String messageId, String user){
+    showDialog(context: context, builder: (context)=>AlertDialog(
+      title: const Text("Репорт сообщения"),
+      content: const Text("Вы точно хотите пожаловатся на это сообщение?"),
+      actions: [
+        TextButton(onPressed: ()=>Navigator.pop(context), child: Text("Закрыть")),
+        TextButton(
+          onPressed: () {
+            ChatService().reportUser(messageId, userId);
+            Navigator.pop(context);
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Вы пожаловались на сообщение")));
+          }, 
+          child: Text("Репорт")),
+      ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
